@@ -22,10 +22,11 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $filepath= public_path('/uploads/avatars');
         return [
             'first_name'  => $this->faker->firstName,
             'last_name'   => $this->faker->lastName,         
-            'profile_photo_path' => public_path('uploads/avatars'),
+            'profile_photo_path' => $this->faker->image($filepath,150, 150,null,false),
             'phone' => 1234567891,
             'street' => $this->faker->streetAddress,
             'zip_code' => $this->faker->postcode,
