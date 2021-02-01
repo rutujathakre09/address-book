@@ -1,0 +1,17 @@
+INSTRUCTIONS FOR SET UP
+=======================
+After checking out project ,Enter Root Directory of project(address_book)and run following set of commands
+$composer install
+$php artisan migrate
+$npm install && npm run dev
+$php artisan cache:clear
+$php artisan db:seed --class=CitySeeder
+
+To make admin user entry run following sql query for user table
+
+mysql> INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `profile_photo_path`, `phone`, `street`, `zip_code`, `role`, `city`, `created_at`, `updated_at`) VALUES (NULL, 'admin', 'admin', 'admin@addressbook.com', '2021-02-01 03:39:57', '$2y$10$RoOFFG0XPSue7X1ntYTybu1px280acASUlIyjW1I85.u9YTm2PsBy', NULL, NULL, NULL, '1612150781.jpg', '9823113822', 'abc', '400061', 'admin', '1', '2021-02-01 03:39:41', '2021-02-01 03:39:57');
+
+To make fake user entries run following commands:
+$php artisan tinker
+ >>>User::factory()->count(20)->create() 
+>>>Exit

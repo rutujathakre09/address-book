@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes(['verify' => true]);
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
+    return view('home');
+})->name('home');
+//Route::get('profile', function () {
+//    // Only verified users may enter...
+//})->middleware('verified');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('show');
+//Route::post('/profile/update', 'ProfileController@updateProfile')->name('profile.update-profile-information-form.blade');
